@@ -8,18 +8,18 @@ export default async function handler(res, res_orig) {
     if (!phone) return res_orig.status(400).json({ error: 'Phone number is required' });
 
     try {
-        const settings = db.prepare('SELECT * FROM settings').get();
-        const user = db.prepare('SELECT * FROM users WHERE phone = ?').get(phone);
+        const settings = await db.prepare('SELECT * FROM settings').get();
+        const user = await db.prepare('SELECT * FROM users WHERE phone = ?').get(phone);
 
         // Generate a random 6-digit OTP
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
         if (user) {
-            db.prepare('UPDATE users SET otp = ?, otp_expires_at = ? WHERE id = ?')
+            await db.prepare('UPDATE users SET otp = ?, otp_expires_at = ? WHERE id = ?')
                 .run(otp, expiresAt.toISOString(), user.id);
         } else {
-            db.prepare('INSERT INTO users (phone, otp, otp_expires_at, quota_limit_mb) VALUES (?, ?, ?, ?)')
+            await db.prepare('INSERT INTO users (phone, otp, otp_expires_at, quota_limit_mb) VALUES (?, ?, ?, ?)')
                 .run(phone, otp, expiresAt.toISOString(), settings.default_quota_mb);
         }
 

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const user = db.prepare('SELECT id, otp, otp_expires_at, quota_limit_mb, quota_used_mb FROM users WHERE phone = ?').get(phone);
+        const user = await db.prepare('SELECT id, otp, otp_expires_at, quota_limit_mb, quota_used_mb FROM users WHERE phone = ?').get(phone);
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
@@ -34,8 +34,8 @@ export default async function handler(req, res) {
         const expiresAt = new Date();
         expiresAt.setDate(expiresAt.getDate() + 7); // 7 days session
 
-        db.prepare('UPDATE users SET otp = NULL, otp_expires_at = NULL WHERE id = ?').run(user.id);
-        db.prepare('INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)')
+        await db.prepare('UPDATE users SET otp = NULL, otp_expires_at = NULL WHERE id = ?').run(user.id);
+        await db.prepare('INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)')
             .run(token, user.id, expiresAt.toISOString());
 
         return res.status(200).json({ token });
