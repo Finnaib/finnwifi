@@ -26,6 +26,13 @@ export default async function handler(res, res_orig) {
         // Send via SMS
         const result = await sendSms(phone, otp);
 
+        if (!result.success) {
+            return res_orig.status(500).json({
+                error: 'Failed to send SMS',
+                details: result.error
+            });
+        }
+
         console.log(`\n-----------------------------------------`);
         console.log(`[SMS_TEST_CODE] Code for ${phone}: ${otp}`);
         console.log(`-----------------------------------------\n`);
@@ -33,7 +40,11 @@ export default async function handler(res, res_orig) {
         return res_orig.status(200).json({ message: 'Code sent to your phone via SMS' });
 
     } catch (err) {
-        console.error(err);
-        return res_orig.status(500).json({ error: 'Database error' });
+        console.error('Request OTP Error:', err);
+        return res_orig.status(500).json({
+            error: 'Database error',
+            details: err.message,
+            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        });
     }
 }

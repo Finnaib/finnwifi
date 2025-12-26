@@ -121,7 +121,8 @@ export default function Home() {
             if (res.ok) {
                 router.push(`/verify?phone=${encodeURIComponent(fullNumber)}`);
             } else {
-                alert(data.error || 'Something went wrong');
+                const errorMsg = data.details ? `Database error: ${data.details}` : (data.error || 'Something went wrong');
+                alert(errorMsg);
             }
         } catch (err) {
             alert('Failed to connect to server');

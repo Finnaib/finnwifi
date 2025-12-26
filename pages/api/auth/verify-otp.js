@@ -40,7 +40,10 @@ export default async function handler(req, res) {
 
         return res.status(200).json({ token });
     } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Internal server error' });
+        console.error('Verify OTP Error:', err);
+        return res.status(500).json({
+            error: 'Verification error',
+            details: err.message
+        });
     }
 }
