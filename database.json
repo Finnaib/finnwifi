@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": 1766666255780,
+      "email": "shoaibwwe01@gmail.com",
+      "otp": "301038",
+      "otp_expires_at": "2025-12-26T14:10:26.681Z",
+      "quota_limit_mb": 50,
+      "network_id": 1,
+      "quota_used_mb": 17,
+      "created_at": "2025-12-25T12:37:35.781Z"
+    },
+    {
+      "id": 1766757985152,
+      "phone": "919369890468",
+      "otp": null,
+      "otp_expires_at": null,
+      "quota_limit_mb": "500",
+      "quota_used_mb": 20,
+      "created_at": "2025-12-26T14:06:25.152Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "407f42e2-1661-4820-9d39-38a0530262f3",
+      "user_id": 1766660537961,
+      "expires_at": "2025-12-26T11:08:58.213Z"
+    },
+    {
+      "token": "bd78e3c8-cdfc-4a2e-8935-98aa80f83839",
+      "user_id": 1766661791354,
+      "expires_at": "2025-12-26T12:03:29.462Z"
+    },
+    {
+      "token": "25437b27-6613-4943-9a85-c561f1c09049",
+      "user_id": 1766661791354,
+      "expires_at": "2025-12-26T12:32:27.862Z"
+    },
+    {
+      "token": "69e2c957-626b-43bf-9ec5-be8a15058623",
+      "user_id": 1766661791354,
+      "expires_at": "2025-12-26T12:33:37.544Z"
+    },
+    {
+      "token": "ef30c214-8b23-4762-99f1-0658400f7189",
+      "user_id": 1766666255780,
+      "expires_at": "2025-12-26T12:37:59.741Z"
+    },
+    {
+      "token": "d3c788e6-82f5-4c1e-9cc9-238ba454c982",
+      "user_id": 1766666255780,
+      "expires_at": "2025-12-27T13:13:45.753Z"
+    },
+    {
+      "token": "e6977ab4-1754-4695-a12d-fc0e1ec7138f",
+      "user_id": 1766757985152,
+      "expires_at": "2026-01-02T14:57:09.253Z"
+    },
+    {
+      "token": "cd874a5f-c9a1-4d90-92d1-bc5d9f685fc8",
+      "user_id": 1766757985152,
+      "expires_at": "2026-01-02T15:01:37.746Z"
+    }
+  ],
+  "settings": {
+    "admin_password": "admin123",
+    "default_quota_mb": "500"
+  },
+  "networks": [
+    {
+      "id": 1,
+      "name": "WEE9E61C5",
+      "default_quota_mb": 50
+    }
+  ]
+}
